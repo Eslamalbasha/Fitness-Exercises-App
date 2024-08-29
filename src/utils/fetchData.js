@@ -1,14 +1,14 @@
-export const exerciseOption = {
+export const exerciseOptions = {
   method: "GET",
   headers: {
-    // eslint-disable-next-line no-undef
-    "x-rapidapi-key": process.env.REACT_APP_RAPID_KEY,
-    "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+    "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+    "x-rapidapi-key": "462ac5182dmshac9ddc076f826ffp19ec79jsn90958f8e2827",
   },
 };
 
 export const fetchData = async (url, options) => {
-  const respons = await fetch(url, options);
-  const data = await respons.json();
+  const res = await fetch(url, options);
+  const data = await res.json();
+
   return data;
 };

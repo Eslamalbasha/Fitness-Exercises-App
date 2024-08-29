@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { exerciseOption, fetchData } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
-const SearchExercise = () => {
+// eslint-disable-next-line react/prop-types
+const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
   const [search, setSearch] = useState("");
-  const [exercise, setExercise] = useState([]);
   const [bodyParts, setBodyParts] = useState([]);
+
   useEffect(() => {
     const fetchExercisesData = async () => {
       const bodyPartsData = await fetchData(
@@ -31,7 +32,7 @@ const SearchExercise = () => {
           exercise.bodyPart.toLowerCase().includes(search)
       );
       setSearch("");
-      setExercise(searchedExercises);
+      setExercises(searchedExercises);
     }
   };
   return (
@@ -76,7 +77,11 @@ const SearchExercise = () => {
         </Button>
       </Box>
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <HorizontalScrollbar data={bodyParts} />
+        <HorizontalScrollbar
+          data={bodyParts}
+          bodyPart={bodyPart}
+          setBodyPart={setBodyPart}
+        />
       </Box>
     </Stack>
   );
